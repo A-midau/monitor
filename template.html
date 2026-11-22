@@ -2,40 +2,68 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Digest</title>
 <style>
-:root{--bg:#f7f6f3;--card:#fff;--fg:#1d1d1b;--mut:#77766f;--line:#e8e6e0;--acc:#4f46e5;
---model:#7c3aed;--tool:#0d9488;--video:#dc2626;--discussion:#d97706}
-@media(prefers-color-scheme:dark){:root{--bg:#141413;--card:#1e1e1c;--fg:#ecebe7;--mut:#8f8e87;--line:#2c2c29;--acc:#818cf8;
---model:#a78bfa;--tool:#2dd4bf;--video:#f87171;--discussion:#fbbf24}}
+:root{--bg:#f6f6f4;--card:#ffffff;--fg:#16161a;--mut:#6f6f78;--line:#e6e6e2;--acc:#6366f1;--glow:rgba(99,102,241,.10);
+--shadow:0 1px 2px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.04)}
+:root[data-theme=dark]{--bg:#0b0b0e;--card:#141418;--fg:#f2f2f5;--mut:#8b8b96;--line:#23232a;--acc:#818cf8;--glow:rgba(129,140,248,.14);
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.25)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0b0b0e;--card:#141418;--fg:#f2f2f5;--mut:#8b8b96;--line:#23232a;--acc:#818cf8;--glow:rgba(129,140,248,.14);
+--shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.25)}}
+:root{--model:#8b5cf6;--tool:#14b8a6;--video:#f43f5e;--discussion:#f59e0b}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
-main{max-width:680px;margin:0 auto;padding:40px 16px 72px}
-header{margin-bottom:20px}
-h1{font-size:26px;font-weight:650;letter-spacing:-.02em;margin:0}
-.sub{color:var(--mut);font-size:14px;margin-top:4px}
-.chips{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 14px}
-.chips button{font:inherit;font-size:13px;border:1px solid var(--line);background:transparent;color:var(--mut);
-padding:5px 12px;border-radius:99px;cursor:pointer}
+html{color-scheme:light dark}
+body{margin:0;min-height:100vh;color:var(--fg);font:15px/1.5 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+background:radial-gradient(900px 380px at 50% -120px,var(--glow),transparent 70%),var(--bg);-webkit-font-smoothing:antialiased}
+.bar{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);
+background:color-mix(in srgb,var(--bg) 72%,transparent);border-bottom:1px solid var(--line)}
+.bar>div{max-width:760px;margin:0 auto;padding:12px 18px;display:flex;align-items:center;gap:12px}
+.logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,var(--acc),#ec4899);display:grid;place-items:center;color:#fff;font-weight:700;font-size:14px}
+.brand{font-weight:650;letter-spacing:-.01em}
+.sp{flex:1}
+.live{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--mut)}
+.live i{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.6);animation:p 2.4s infinite}
+@keyframes p{70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+#theme{display:grid;place-items:center;border:1px solid var(--line);background:var(--card);color:var(--mut);width:32px;height:32px;border-radius:9px;cursor:pointer;font-size:14px}
+#theme:hover{color:var(--fg)}
+main{max-width:760px;margin:0 auto;padding:34px 18px 80px}
+h1{font-size:clamp(28px,5vw,38px);line-height:1.1;font-weight:700;letter-spacing:-.035em;margin:0}
+.sub{color:var(--mut);margin:10px 0 0;font-size:14.5px}
+.sub b{color:var(--fg);font-weight:600}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:26px 0 8px}
+.chips button{font:inherit;font-size:13px;display:flex;align-items:center;gap:7px;border:1px solid var(--line);background:var(--card);color:var(--mut);
+padding:6px 12px;border-radius:99px;cursor:pointer;transition:.15s}
+.chips button:hover{color:var(--fg)}
 .chips button.on{background:var(--fg);color:var(--bg);border-color:var(--fg)}
-.item{position:relative;display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);
-border-radius:14px;padding:12px 14px;margin-bottom:8px;color:inherit;text-decoration:none;transition:border-color .15s}
-.item:hover{border-color:var(--mut)}
-.item img{width:112px;aspect-ratio:16/9;object-fit:cover;border-radius:8px;flex:none;background:var(--line)}
+.chips em{font-style:normal;font-size:11px;opacity:.65;font-variant-numeric:tabular-nums}
+.grp{margin-top:26px}
+.grp>h2{display:flex;align-items:center;gap:12px;font-size:11.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--mut);margin:0 0 10px}
+.grp>h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.item{position:relative;display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;
+padding:12px;margin-bottom:9px;color:inherit;text-decoration:none;box-shadow:var(--shadow);transition:transform .18s,border-color .18s}
+.item:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--c,var(--acc)) 55%,var(--line))}
+.item.model{--c:var(--model)}.item.tool{--c:var(--tool)}.item.video{--c:var(--video)}.item.discussion{--c:var(--discussion)}
+.item img{width:148px;aspect-ratio:16/9;object-fit:cover;border-radius:10px;flex:none;background:var(--line)}
+.av{width:46px;height:46px;border-radius:13px;flex:none;display:grid;place-items:center;font-weight:700;font-size:17px}
 .body{min-width:0;flex:1}
-.meta{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:3px;flex-wrap:wrap}
-.tag{font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
-.tag.model{color:var(--model)}.tag.tool{color:var(--tool)}.tag.video{color:var(--video)}.tag.discussion{color:var(--discussion)}
-.title{font-weight:550;line-height:1.3}
-.dot{display:none;position:absolute;top:12px;right:12px;width:8px;height:8px;border-radius:50%;background:var(--acc)}
-.item.new .dot{display:block}
+.meta{display:flex;gap:8px;align-items:center;font-size:12.5px;color:var(--mut);margin-bottom:4px;flex-wrap:wrap}
+.tag{font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:99px;
+color:var(--c);background:color-mix(in srgb,var(--c) 13%,transparent)}
+.src{color:var(--fg);font-weight:550}
+.title{font-weight:600;font-size:15.5px;line-height:1.35;letter-spacing:-.005em;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.arrow{color:var(--mut);opacity:0;transform:translateX(-4px);transition:.18s;flex:none;font-size:18px}
+.item:hover .arrow{opacity:1;transform:none;color:var(--c)}
+.new::before{content:"";position:absolute;left:-1px;top:16px;bottom:16px;width:3px;border-radius:3px;background:var(--acc)}
+.badge{display:none;font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--acc)}
+.new .badge{display:inline}
 .empty,.issues,footer{color:var(--mut);font-size:13px}
-.issues{margin-top:24px}
-footer{text-align:center;margin-top:28px}
-@media(max-width:480px){.item img{width:88px}}
-</style></head><body><main>
-<header><h1>Digest</h1><div class="sub" id="sub"></div></header>
-<div class="chips" id="chips">
-<button class="on" data-f="all">All</button><button data-f="model">Models</button>
-<button data-f="tool">Tools</button><button data-f="video">Videos</button><button data-f="discussion">Discussion</button></div>
+.issues{margin-top:30px;padding:12px 14px;border:1px dashed var(--line);border-radius:12px;line-height:1.6}
+footer{text-align:center;margin-top:34px}
+@media(max-width:520px){.item{align-items:flex-start}.item img{width:104px}.av{width:40px;height:40px}.arrow{display:none}.live span{display:none}}
+</style></head><body>
+<div class="bar"><div><div class="logo">D</div><span class="brand">Digest</span><span class="sp"></span>
+<span class="live"><i></i><span id="upd"></span></span><button id="theme" title="Toggle theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18" /><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg></button></div></div>
+<main>
+<h1 id="date"></h1><p class="sub" id="sub"></p>
+<div class="chips" id="chips"></div>
 <div id="list">{{ROWS}}</div>
 <footer id="end"></footer>
 {{ERRORS}}
@@ -44,14 +72,42 @@ footer{text-align:center;margin-top:28px}
 const UPDATED={{UPDATED}};
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const ago=t=>{const m=Math.max(1,Math.round((Date.now()-t)/6e4));return m<60?m+"m ago":m<1440?Math.round(m/60)+"h ago":Math.round(m/1440)+"d ago"};
+// theme
+const root=document.documentElement;
+try{const s=localStorage.getItem("theme");if(s)root.dataset.theme=s}catch(e){}
+$("#theme").onclick=()=>{const dark=matchMedia("(prefers-color-scheme: dark)").matches;
+ const cur=root.dataset.theme||(dark?"dark":"light");const n=cur==="dark"?"light":"dark";root.dataset.theme=n;try{localStorage.setItem("theme",n)}catch(e){}};
+// new since last visit
 let prev=0;
 try{prev=+(sessionStorage.getItem("prev")||localStorage.getItem("last")||0);sessionStorage.setItem("prev",prev);localStorage.setItem("last",Date.now())}catch(e){}
-let fresh=0;
-$$(".item").forEach(a=>{const t=+a.dataset.ts;a.querySelector(".when").textContent="· "+ago(t);if(prev&&t>prev){a.classList.add("new");fresh++}});
-$("#sub").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"})+
- " · updated "+ago(UPDATED)+(fresh?" · "+fresh+" new since your last visit":"");
-$("#chips").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+const items=$$(".item");let fresh=0;
+items.forEach(a=>{
+ const t=+a.dataset.ts,type=a.dataset.type;a.classList.add(type);
+ const meta=a.querySelector(".meta");meta.children[1].classList.add("src");
+ a.querySelector(".when").textContent="· "+ago(t);
+ meta.insertAdjacentHTML("beforeend",'<span class="badge">NEW</span>');
+ if(!a.querySelector("img")){const n=meta.children[1].textContent,h=[...n].reduce((x,c)=>x*31+c.charCodeAt(0)|0,7)%360;
+  a.insertAdjacentHTML("afterbegin",`<div class="av" style="background:hsl(${h} 70% 55%/.16);color:hsl(${h} 75% 58%)">${n.replace(/^r\//,"").charAt(0).toUpperCase()}</div>`)}
+ a.insertAdjacentHTML("beforeend",'<span class="arrow">↗</span>');
+ if(prev&&t>prev){a.classList.add("new");fresh++}
+});
+// group by day
+const startToday=new Date().setHours(0,0,0,0),list=$("#list");
+const groups={};
+items.forEach(a=>{const t=+a.dataset.ts;const k=t>=startToday?"Today":t>=startToday-864e5?"Yesterday":"Earlier";
+ if(!groups[k]){const s=document.createElement("section");s.className="grp";s.innerHTML=`<h2>${k}</h2>`;groups[k]=s}groups[k].appendChild(a)});
+["Today","Yesterday","Earlier"].forEach(k=>groups[k]&&list.appendChild(groups[k]));
+// header
+$("#date").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"});
+$("#sub").innerHTML=`<b>${items.length}</b> things worth knowing`+(fresh?` · <b>${fresh}</b> new since your last visit`:"");
+$("#upd").textContent="Updated "+ago(UPDATED);
+// chips with counts
+const types=[["all","All"],["model","Models"],["tool","Tools"],["video","Videos"],["discussion","Discussion"]];
+$("#chips").innerHTML=types.filter(([k])=>k==="all"||items.some(a=>a.dataset.type===k)).map(([k,l],i)=>
+ `<button data-f="${k}" class="${i?"":"on"}">${l}<em>${k==="all"?items.length:items.filter(a=>a.dataset.type===k).length}</em></button>`).join("");
+$("#chips").onclick=e=>{const b=e.target.closest("button");if(!b)return;
  $$("#chips button").forEach(x=>x.classList.toggle("on",x===b));
- $$(".item").forEach(a=>a.style.display=(b.dataset.f==="all"||a.dataset.type===b.dataset.f)?"":"none")});
-$("#end").textContent=$$(".item").length?"That's everything. You're caught up.":"";
+ items.forEach(a=>a.style.display=(b.dataset.f==="all"||a.dataset.type===b.dataset.f)?"":"none");
+ $$(".grp").forEach(g=>g.style.display=[...g.querySelectorAll(".item")].some(a=>a.style.display!=="none")?"":"none")};
+$("#end").textContent=items.length?"That's everything. You're caught up.":"";
 </script></body></html>
