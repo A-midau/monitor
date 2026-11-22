@@ -1,0 +1,39 @@
+{
+  "settings": { "max_items": 15, "hours": 72, "per_source_cap": 2 },
+  "sources": [
+    {"name": "OpenAI", "type": "model", "priority": 3, "url": "https://openai.com/news/rss.xml"},
+    {"name": "Google AI", "type": "model", "priority": 3, "url": "https://blog.google/technology/ai/rss/"},
+    {"name": "Hugging Face", "type": "model", "priority": 3, "url": "https://huggingface.co/blog/feed.xml"},
+    {"name": "Simon Willison", "type": "model", "priority": 2, "url": "https://simonwillison.net/atom/everything/"},
+
+    {"name": "ollama", "type": "tool", "priority": 3, "url": "https://github.com/ollama/ollama/releases.atom"},
+    {"name": "llama.cpp", "type": "tool", "priority": 3, "url": "https://github.com/ggml-org/llama.cpp/releases.atom"},
+    {"name": "ComfyUI", "type": "tool", "priority": 2, "url": "https://github.com/comfyanonymous/ComfyUI/releases.atom"},
+    {"name": "Open WebUI", "type": "tool", "priority": 2, "url": "https://github.com/open-webui/open-webui/releases.atom"},
+    {"name": "vLLM", "type": "tool", "priority": 2, "url": "https://github.com/vllm-project/vllm/releases.atom"},
+    {"name": "Hackaday", "type": "tool", "priority": 2, "url": "https://hackaday.com/blog/feed/"},
+    {"name": "Bellingcat", "type": "tool", "priority": 2, "url": "https://www.bellingcat.com/feed/"},
+    {"name": "Krebs on Security", "type": "tool", "priority": 1, "url": "https://krebsonsecurity.com/feed/"},
+
+    {"name": "Hacker News", "type": "discussion", "priority": 2, "ranked": true, "url": "https://hnrss.org/frontpage?points=150"},
+    {"name": "Show HN", "type": "discussion", "priority": 2, "ranked": true, "url": "https://hnrss.org/show?points=60"},
+    {"name": "Lobsters", "type": "discussion", "priority": 1, "ranked": true, "url": "https://lobste.rs/rss"},
+    {"name": "r/LocalLLaMA", "type": "discussion", "priority": 2, "ranked": true, "url": "https://www.reddit.com/r/LocalLLaMA/top/.rss?t=day"},
+    {"name": "r/MachineLearning", "type": "discussion", "priority": 1, "ranked": true, "url": "https://www.reddit.com/r/MachineLearning/top/.rss?t=day"},
+    {"name": "r/selfhosted", "type": "discussion", "priority": 1, "ranked": true, "url": "https://www.reddit.com/r/selfhosted/top/.rss?t=day"},
+    {"name": "r/opensource", "type": "discussion", "priority": 1, "ranked": true, "url": "https://www.reddit.com/r/opensource/top/.rss?t=day"},
+    {"name": "r/electronics", "type": "discussion", "priority": 1, "ranked": true, "url": "https://www.reddit.com/r/electronics/top/.rss?t=day"},
+    {"name": "r/OSINT", "type": "discussion", "priority": 1, "ranked": true, "url": "https://www.reddit.com/r/OSINT/top/.rss?t=day"},
+
+    {"name": "Fireship", "type": "video", "priority": 3, "youtube": "@Fireship"},
+    {"name": "R. Andrew Neal", "type": "video", "priority": 3, "youtube": "@RAndrewNeal"},
+    {"name": "Two Minute Papers", "type": "video", "priority": 2, "youtube": "@TwoMinutePapers"},
+    {"name": "AI Explained", "type": "video", "priority": 2, "youtube": "@aiexplained-official"},
+    {"name": "Matthew Berman", "type": "video", "priority": 2, "youtube": "@matthew_berman"},
+    {"name": "Jeff Geerling", "type": "video", "priority": 2, "youtube": "@JeffGeerling"},
+    {"name": "Techno Tim", "type": "video", "priority": 1, "youtube": "@TechnoTim"},
+    {"name": "EEVblog", "type": "video", "priority": 1, "youtube": "@EEVblog"},
+    {"name": "GreatScott!", "type": "video", "priority": 1, "youtube": "@greatscottlab"},
+    {"name": "NetworkChuck", "type": "video", "priority": 1, "youtube": "@NetworkChuck"}
+  ]
+}
